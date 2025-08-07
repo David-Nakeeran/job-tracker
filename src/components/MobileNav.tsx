@@ -32,7 +32,7 @@ export default function MobileNav() {
         ></span>
       </button>
       {isOpen ? (
-        <div className="flex flex-col gap-3">
+        <div className="absolute top-12 left-0 w-full bg-white shadow-md z-50 p-4 flex flex-col gap-3">
           <SignedIn>
             <UserButton />
           </SignedIn>
