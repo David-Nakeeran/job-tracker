@@ -16,3 +16,7 @@ export type JobInsertPayload = JobFormData & { id: string };
 export type UserIdProps = {
   userId: string;
 };
+
+export type JobFormState = {
+  message: string;
+};
