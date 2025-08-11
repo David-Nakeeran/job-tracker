@@ -45,11 +45,9 @@ export async function createJob(
         jobData.id,
       ]
     );
+    revalidatePath("/dashboard");
     return { message: "Job added successfully!" };
   } catch (error) {
     return { message: "Error adding job. Please try again" };
   }
-
-  revalidatePath("/dashboard");
-  redirect("/dashboard");
 }
