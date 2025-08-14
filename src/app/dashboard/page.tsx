@@ -1,5 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
+import { getUserJobs } from "@/lib/jobs";
+import DashboardContent from "@/components/DashboardContent";
+import Providers from "@/Providers";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
@@ -8,9 +11,11 @@ export default async function DashboardPage() {
     return redirect("/sign-in");
   }
 
+  const jobs = (await getUserJobs(userId)) || [];
+
   return (
-    <>
-      <h1>Dashboard page</h1>
-    </>
+    <Providers jobs={jobs}>
+      <DashboardContent />
+    </Providers>
   );
 }
