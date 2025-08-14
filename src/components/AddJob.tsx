@@ -4,7 +4,7 @@ import { createJob } from "@/lib/actions";
 import { UserIdProps } from "@/types/dataTypes";
 import { useActionState } from "react";
 
-// This is the starting value for our form's state.
+// Starting value for form's state.
 // 'message' will be updated later based on what createJob returns.
 const initialState = {
   message: "",
@@ -30,20 +30,48 @@ export default function AddJob({ userId }: UserIdProps) {
 
   return (
     <>
-      <form action={formAction} className="max-w-md mx-auto p-6">
+      <form
+        action={formAction}
+        className="max-w-md mx-auto p-6 bg-[#2a2a2c] rounded-md shadow-md"
+      >
         <fieldset className="flex flex-col gap-3">
-          <legend>Add a Job</legend>
+          <legend className="text-[#ce2772] mb-2 center text-center font-bold">
+            Add a Job
+          </legend>
           <label htmlFor="position">Position</label>
-          <input id="position" name="position" type="text" required />
+          <input
+            className="w-full p-2 rounded-md bg-[#1b1b1d] border border-[#3d3d3f] text-[#e8e8e8] focus:outline-none focus:border-[#ce2772] focus:ring-1 focus:ring-[#ce2772]"
+            id="position"
+            name="position"
+            type="text"
+            required
+          />
 
           <label htmlFor="company">Company</label>
-          <input id="company" name="company" type="text" required />
+          <input
+            className="w-full p-2 rounded-md bg-[#1b1b1d] border border-[#3d3d3f] text-[#e8e8e8] focus:outline-none focus:border-[#ce2772] focus:ring-1 focus:ring-[#ce2772]"
+            id="company"
+            name="company"
+            type="text"
+            required
+          />
 
           <label htmlFor="date_applied">Date Applied</label>
-          <input id="date_applied" name="date_applied" type="date" required />
+          <input
+            className="w-full p-2 rounded-md bg-[#1b1b1d] border border-[#3d3d3f] text-[#e8e8e8] focus:outline-none focus:border-[#ce2772] focus:ring-1 focus:ring-[#ce2772]"
+            id="date_applied"
+            name="date_applied"
+            type="date"
+            required
+          />
 
           <label htmlFor="status">Status</label>
-          <select id="status" name="status" required>
+          <select
+            className="w-full p-2 rounded-md bg-[#1b1b1d] border border-[#3d3d3f] text-[#e8e8e8] focus:outline-none focus:border-[#ce2772] focus:ring-1 focus:ring-[#ce2772]"
+            id="status"
+            name="status"
+            required
+          >
             <option value="" hidden>
               -- Select status --
             </option>
@@ -53,7 +81,12 @@ export default function AddJob({ userId }: UserIdProps) {
           </select>
 
           <label htmlFor="work_type">Work Type</label>
-          <select id="work_type" name="work_type" required>
+          <select
+            className="w-full p-2 rounded-md bg-[#1b1b1d] border border-[#3d3d3f] text-[#e8e8e8] focus:outline-none focus:border-[#ce2772] focus:ring-1 focus:ring-[#ce2772]"
+            id="work_type"
+            name="work_type"
+            required
+          >
             <option value="" hidden>
               -- Select work type --
             </option>
@@ -63,22 +96,49 @@ export default function AddJob({ userId }: UserIdProps) {
           </select>
 
           <label htmlFor="location">Location</label>
-          <input id="location" name="location" type="text" />
+          <input
+            className="w-full p-2 rounded-md bg-[#1b1b1d] border border-[#3d3d3f] text-[#e8e8e8] focus:outline-none focus:border-[#ce2772] focus:ring-1 focus:ring-[#ce2772]"
+            id="location"
+            name="location"
+            type="text"
+          />
 
           <label htmlFor="salary">Salary</label>
-          <input id="salary" name="salary" type="text" />
+          <input
+            className="w-full p-2 rounded-md bg-[#1b1b1d] border border-[#3d3d3f] text-[#e8e8e8] focus:outline-none focus:border-[#ce2772] focus:ring-1 focus:ring-[#ce2772]"
+            id="salary"
+            name="salary"
+            type="text"
+          />
 
           <label htmlFor="job_url">Job URL</label>
-          <input id="job_url" name="job_url" type="url" />
+          <input
+            className="w-full p-2 rounded-md bg-[#1b1b1d] border border-[#3d3d3f] text-[#e8e8e8] focus:outline-none focus:border-[#ce2772] focus:ring-1 focus:ring-[#ce2772]"
+            id="job_url"
+            name="job_url"
+            type="url"
+          />
 
           <label htmlFor="description">Description</label>
-          <textarea id="description" name="description"></textarea>
+          <textarea
+            className="w-full p-2 rounded-md bg-[#1b1b1d] border border-[#3d3d3f] text-[#e8e8e8] focus:outline-none focus:border-[#ce2772] focus:ring-1 focus:ring-[#ce2772]"
+            id="description"
+            name="description"
+          ></textarea>
 
           <label htmlFor="notes">Notes</label>
-          <textarea id="notes" name="notes"></textarea>
+          <textarea
+            className="w-full p-2 rounded-md bg-[#1b1b1d] border border-[#3d3d3f] text-[#e8e8e8] focus:outline-none focus:border-[#ce2772] focus:ring-1 focus:ring-[#ce2772]"
+            id="notes"
+            name="notes"
+          ></textarea>
           <p aria-live="polite">{state?.message}</p>
-          <button type="submit" disabled={pending}>
-            Add a job
+          <button
+            className="cursor-pointer mt-4 w-full py-2 px-4 rounded-md bg-[#ce2772] text-white font-semibold hover:bg-[#a81f5c] hover:scale-105 transform transition-colors duration-200 disabled:opacity-50"
+            type="submit"
+            disabled={pending}
+          >
+            {pending ? "Adding..." : "Add a job"}
           </button>
         </fieldset>
       </form>
