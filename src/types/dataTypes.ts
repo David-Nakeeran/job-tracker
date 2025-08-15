@@ -37,6 +37,10 @@ export type Job = {
   description?: string;
 };
 
+export type JobProps = {
+  jobs: Job[];
+};
+
 export type JobProviderProps = {
   jobs: Job[]; // an array of Job objects (each item matches the Job type)
   children: ReactNode;

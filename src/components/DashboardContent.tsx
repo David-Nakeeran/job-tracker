@@ -1,7 +1,7 @@
 "use client";
 import { useJobs } from "@/context/JobContext";
-import JobCard from "./JobCard";
 import StatusCard from "./StatusCard";
+import JobList from "./JobList";
 
 export default function DashboardContent() {
   const jobs = useJobs();
@@ -18,13 +18,13 @@ export default function DashboardContent() {
     <>
       <h1>Dashboard content</h1>
       <StatusCard status="Applied" count={statusApplied.length}>
-        <JobCard />
+        <JobList jobs={statusApplied} />
       </StatusCard>
       <StatusCard status="Interview" count={statusInterview.length}>
-        <JobCard />
+        <JobList jobs={statusInterview} />
       </StatusCard>
       <StatusCard status="Rejected" count={statusRejected.length}>
-        <JobCard />
+        <JobList jobs={statusRejected} />
       </StatusCard>
     </>
   );
