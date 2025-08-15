@@ -41,3 +41,9 @@ export type JobProviderProps = {
   jobs: Job[]; // an array of Job objects (each item matches the Job type)
   children: ReactNode;
 };
+
+export type StatusCardProps = {
+  status: string;
+  count: number;
+  children: ReactNode;
+};
