@@ -27,7 +27,7 @@ export type Job = {
   id: string;
   position: string;
   company: string;
-  date_applied: string;
+  date_applied: Date;
   location?: string;
   status: string;
   notes?: string;
@@ -39,6 +39,19 @@ export type Job = {
 
 export type JobProps = {
   jobs: Job[];
+};
+
+export type JobCardProps = {
+  position: string;
+  company: string;
+  date_applied: string;
+  location?: string;
+  status: string;
+  notes?: string;
+  work_type: string;
+  salary?: string;
+  job_url?: string;
+  description?: string;
 };
 
 export type JobProviderProps = {
