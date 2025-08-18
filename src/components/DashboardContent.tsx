@@ -15,8 +15,7 @@ export default function DashboardContent() {
 
   // pass to components
   return (
-    <>
-      <h1>Dashboard content</h1>
+    <section className="flex flex-col gap-3">
       <StatusCard status="Applied" count={statusApplied.length}>
         <JobList jobs={statusApplied} />
       </StatusCard>
@@ -26,6 +25,6 @@ export default function DashboardContent() {
       <StatusCard status="Rejected" count={statusRejected.length}>
         <JobList jobs={statusRejected} />
       </StatusCard>
-    </>
+    </section>
   );
 }
