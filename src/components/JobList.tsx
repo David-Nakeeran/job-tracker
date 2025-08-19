@@ -21,10 +21,5 @@ export default function JobList({ jobs }: JobProps) {
       />
     );
   });
-  return (
-    <>
-      <h1>JobLists</h1>
-      {jobElements}
-    </>
-  );
+  return <div className="flex flex-col gap-4">{jobElements}</div>;
 }
