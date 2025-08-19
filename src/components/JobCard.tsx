@@ -13,18 +13,43 @@ export default function JobCard({
   description,
 }: JobCardProps) {
   return (
-    <>
-      <h1>JobCard</h1>
-      <p>{position}</p>
-      <p>{company}</p>
-      <p>Status: {status}</p>
-      <p>Applied: {date_applied}</p>
-      {location && <p>{location}</p>}
-      {salary && <p>{salary}</p>}
-      {job_url && <a href={job_url}>Job Link</a>}
-      {description && <p>{description}</p>}
-      {notes && <p>{notes}</p>}
-      <p>Type: {work_type}</p>
-    </>
+    <div className="bg-[#1b1b1d] border border-[#3d3d3f] rounded-xl shadow-md p-4 space-y-3 transition-all duration-200 hover:border-[#ce2772]">
+      <div className="flex justify-between items-center">
+        <h2 className="text-lg font-semibold text-[#ce2772]">{position}</h2>
+      </div>
+      <div>
+        <span className="text-sm border border-[#ce2772] text-[#ce2772] px-2 py-1 rounded-full">
+          Status: {status}
+        </span>
+      </div>
+      <p className="text-sm text-gray-400">
+        {company} {location && `• ${location}`}
+      </p>
+
+      <div className="text-sm text-[#e8e8e8]/80 space-y-1">
+        <p>Applied: {date_applied}</p>
+        {salary && <p>Salary: {salary}</p>}
+        <p>Type: {work_type}</p>
+      </div>
+      {description && (
+        <p className="text-sm text-[#e8e8e8] bg-[#2a2a2c] p-2 rounded">
+          {description}
+        </p>
+      )}
+      {notes && (
+        <p className="text-sm text-[#e8e8e8]/80 italic bg-[#2a2a2c] p-2 rounded">
+          {notes}
+        </p>
+      )}
+      {job_url && (
+        <a
+          href={job_url}
+          target="_blank"
+          className="text-[#ce2772] hover:text-[#a81f5c] underline text-sm"
+        >
+          Job Link
+        </a>
+      )}
+    </div>
   );
 }
