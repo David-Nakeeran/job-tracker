@@ -2,7 +2,12 @@
 import { db } from "@/utils/dbConnection";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { JobFormData, JobInsertPayload, JobFormState } from "@/types/dataTypes";
+import {
+  JobFormData,
+  JobInsertPayload,
+  JobFormState,
+  JobIdProps,
+} from "@/types/dataTypes";
 
 /**
  * createJob runs on the server when the form is submitted.
@@ -50,4 +55,13 @@ export async function createJob(
   } catch (error) {
     return { message: "Error adding job. Please try again" };
   }
+}
+
+export async function deleteJob(jobId: string) {
+  await db.query(
+    `
+    DELETE FROM jbt_jobs WHERE id = $1`,
+    [jobId]
+  );
+  revalidatePath("/dashboard");
 }
