@@ -8,6 +8,7 @@ export default function JobList({ jobs }: JobProps) {
     return (
       <JobCard
         key={job.id}
+        jobId={job.id}
         position={job.position}
         company={job.company}
         status={job.status}
