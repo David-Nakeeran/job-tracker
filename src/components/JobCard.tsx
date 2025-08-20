@@ -1,6 +1,8 @@
 import { JobCardProps } from "@/types/dataTypes";
+import { DeleteAlertDialog } from "./DeleteAlertDialog";
 
 export default function JobCard({
+  jobId,
   position,
   company,
   status,
@@ -50,6 +52,7 @@ export default function JobCard({
           Job Link
         </a>
       )}
+      <DeleteAlertDialog jobId={jobId} />
     </div>
   );
 }

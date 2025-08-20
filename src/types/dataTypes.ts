@@ -19,6 +19,10 @@ export type UserIdProps = {
   userId: string;
 };
 
+export type JobIdProps = {
+  jobId: string;
+};
+
 export type JobFormState = {
   message: string;
 };
@@ -42,6 +46,7 @@ export type JobProps = {
 };
 
 export type JobCardProps = {
+  jobId: string;
   position: string;
   company: string;
   date_applied: string;
