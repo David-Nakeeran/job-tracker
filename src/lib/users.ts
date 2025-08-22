@@ -1,5 +1,5 @@
 "use server";
-import { UserIdProps } from "@/types/dataTypes";
+import { UserIdProps } from "@/types/types";
 import { db } from "@/utils/dbConnection";
 
 export async function userExists(userId: string) {
