@@ -1,5 +1,5 @@
 "use client";
-import { Job, JobProviderProps } from "@/types/dataTypes";
+import { Job, JobProviderProps } from "@/types/types";
 import { createContext, use, useContext } from "react";
 
 const JobContext = createContext<Job[]>([]);
