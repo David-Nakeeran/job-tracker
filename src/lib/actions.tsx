@@ -7,53 +7,48 @@ import {
   JobInsertPayload,
   JobFormState,
   JobIdProps,
-} from "@/types/dataTypes";
+} from "@/types/types";
+import { JobFormValues, jobSchema } from "./schemas/job";
+import { success, z } from "zod";
 
-/**
- * createJob runs on the server when the form is submitted.
- * Parameters:
- * - id (string) → comes from .bind() in the client code
- * - initialState (object) → required by useActionState, but unused here.
- * - formData (FormData) → the form inputs.
- *
- * Whatever object returned from here becomes the new `state`
- * in the client component (replacing initialState).
- */
-export async function createJob(
-  id: string,
-  initialState: JobFormState,
-  formData: FormData
-) {
-  // JobFormData tells TypeScript to trust this shape but does not validate at runtime.
-  const data = Object.fromEntries(formData) as JobFormData;
+export async function createJob(id: string, values: JobFormValues) {
+  // Server validation
+  const result = jobSchema.safeParse(values);
 
-  // Combine the id with the form data, now fully typed as JobInsertPayload
-  const jobData: JobInsertPayload = {
-    id,
-    ...data,
-  };
+  if (!result.success) {
+    const { fieldErrors, formErrors } = z.flattenError(result.error);
+
+    const errorMessages = [...Object.values(fieldErrors).flat(), ...formErrors];
+
+    return { success: false as const, errorMessages };
+  }
 
   try {
     await db.query(
       `INSERT INTO jbt_jobs (position, company, date_applied, location, status, notes, work_type, salary, job_url, description, user_id) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
       [
-        jobData.position,
-        jobData.company,
-        jobData.date_applied,
-        jobData.location,
-        jobData.status,
-        jobData.notes,
-        jobData.work_type,
-        jobData.salary,
-        jobData.job_url,
-        jobData.description,
-        jobData.id,
+        result.data.position,
+        result.data.company,
+        result.data.date_applied,
+        result.data.location,
+        result.data.status,
+        result.data.notes,
+        result.data.work_type,
+        result.data.salary,
+        result.data.job_url,
+        result.data.description,
+        id,
       ]
     );
     revalidatePath("/dashboard");
-    return { message: "Job added successfully!" };
+    return { success: true as const, message: "Job added successfully!" };
   } catch (error) {
-    return { message: "Error adding job. Please try again" };
+    let errorMessage = "Error adding job";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    console.error(errorMessage);
+    return { success: false as const, errorMessage: [errorMessage] };
   }
 }
 

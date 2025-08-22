@@ -1,4 +1,4 @@
-import { JobCardProps } from "@/types/dataTypes";
+import { JobCardProps } from "@/types/types";
 import { DeleteAlertDialog } from "./DeleteAlertDialog";
 
 export default function JobCard({

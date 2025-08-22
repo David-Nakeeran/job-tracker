@@ -12,7 +12,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { JobIdProps } from "@/types/dataTypes";
+import { JobIdProps } from "@/types/types";
 import { deleteJob } from "@/lib/actions";
 
 export function DeleteAlertDialog({ jobId }: JobIdProps) {

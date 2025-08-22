@@ -1,4 +1,4 @@
-import { Job, JobProps } from "@/types/dataTypes";
+import { Job, JobProps } from "@/types/types";
 import JobCard from "./JobCard";
 
 export default function JobList({ jobs }: JobProps) {

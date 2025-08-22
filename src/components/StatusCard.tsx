@@ -1,5 +1,6 @@
 "use client";
-import { StatusCardProps } from "@/types/dataTypes";
+
+import { StatusCardProps } from "@/types/types";
 import { useState } from "react";
 
 export default function StatusCard({
