@@ -1,15 +1,8 @@
 "use server";
 import { db } from "@/utils/dbConnection";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import {
-  JobFormData,
-  JobInsertPayload,
-  JobFormState,
-  JobIdProps,
-} from "@/types/types";
 import { JobFormValues, jobSchema } from "./schemas/job";
-import { success, z } from "zod";
+import { z } from "zod";
 
 export async function createJob(id: string, values: JobFormValues) {
   // Server validation
@@ -43,12 +36,12 @@ export async function createJob(id: string, values: JobFormValues) {
     revalidatePath("/dashboard");
     return { success: true as const, message: "Job added successfully!" };
   } catch (error) {
-    let errorMessage = "Error adding job";
+    let errorMessage = "Failed to add job";
     if (error instanceof Error) {
       errorMessage = error.message;
     }
     console.error(errorMessage);
-    return { success: false as const, errorMessage: [errorMessage] };
+    return { success: false as const, message: errorMessage };
   }
 }
 
@@ -89,15 +82,25 @@ export async function updateJob(jobId: number, values: JobFormValues) {
       errorMessage = error.message;
     }
     console.error(errorMessage);
-    return { success: false as const, errorMessage: [errorMessage] };
+    return { success: false as const, message: errorMessage };
   }
 }
 
 export async function deleteJob(jobId: number) {
-  await db.query(
-    `
+  try {
+    await db.query(
+      `
     DELETE FROM jbt_jobs WHERE id = $1`,
-    [jobId]
-  );
-  revalidatePath("/dashboard");
+      [jobId]
+    );
+    revalidatePath("/dashboard");
+    return { success: true as const, message: "Deleted job successfully!" };
+  } catch (error) {
+    let errorMessage = "Error deleting job";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    console.error(errorMessage);
+    return { success: false as const, message: errorMessage };
+  }
 }
