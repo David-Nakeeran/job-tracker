@@ -8,7 +8,7 @@ export type JobFormData = {
   status: string;
   notes?: string;
   work_type: string;
-  salary?: string;
+  salary: number;
   job_url?: string;
   description?: string;
 };
@@ -20,7 +20,7 @@ export type UserIdProps = {
 };
 
 export type JobIdProps = {
-  jobId: string;
+  jobId: number;
 };
 
 export type JobFormState = {
@@ -28,15 +28,15 @@ export type JobFormState = {
 };
 
 export type Job = {
-  id: string;
+  id: number;
   position: string;
   company: string;
-  date_applied: Date;
+  date_applied: string;
   location?: string;
-  status: string;
+  status: "applied" | "interview" | "rejected";
   notes?: string;
-  work_type: string;
-  salary?: string;
+  work_type: "full-time" | "part-time" | "contract";
+  salary: number;
   job_url?: string;
   description?: string;
 };
@@ -46,15 +46,15 @@ export type JobProps = {
 };
 
 export type JobCardProps = {
-  jobId: string;
+  jobId: number;
   position: string;
   company: string;
   date_applied: string;
   location?: string;
-  status: string;
+  status: "applied" | "interview" | "rejected";
   notes?: string;
-  work_type: string;
-  salary?: string;
+  work_type: "full-time" | "part-time" | "contract";
+  salary: number;
   job_url?: string;
   description?: string;
 };
