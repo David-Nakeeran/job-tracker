@@ -36,7 +36,7 @@ export default function AddJob({ userId }: UserIdProps) {
       work_type: "full-time",
       date_applied: "",
       location: "",
-      salary: "",
+      salary: 0,
       job_url: "",
       description: "",
       notes: "",
@@ -57,7 +57,7 @@ export default function AddJob({ userId }: UserIdProps) {
         work_type: "full-time",
         date_applied: "",
         location: "",
-        salary: "",
+        salary: 0,
         job_url: "",
         description: "",
         notes: "",
@@ -195,7 +195,8 @@ export default function AddJob({ userId }: UserIdProps) {
                 <FormLabel>Salary</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Salary"
+                    type="number"
+                    placeholder="Salary (Leave as 0 if unknown)"
                     className="bg-[#1b1b1d] border-[#3d3d3f] text-[#e8e8e8] focus:outline-none focus:border-[#ce2772] focus:ring-1 focus:ring-[#ce2772]"
                     {...field}
                   />
