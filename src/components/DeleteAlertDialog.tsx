@@ -14,8 +14,18 @@ import {
 import { Button } from "@/components/ui/button";
 import { JobIdProps } from "@/types/types";
 import { deleteJob } from "@/lib/actions";
+import { toast } from "sonner";
 
 export function DeleteAlertDialog({ jobId }: JobIdProps) {
+  async function handleDelete(jobId: number) {
+    const response = await deleteJob(jobId);
+
+    if (response.success) {
+      toast.success(response.message);
+    } else {
+      toast.error(response.message);
+    }
+  }
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -41,7 +51,7 @@ export function DeleteAlertDialog({ jobId }: JobIdProps) {
           </AlertDialogCancel>
           <AlertDialogAction
             className="bg-red-500 text-white hover:bg-red-700"
-            onClick={() => deleteJob(jobId)}
+            onClick={() => handleDelete(jobId)}
           >
             Continue
           </AlertDialogAction>

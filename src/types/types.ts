@@ -31,7 +31,7 @@ export type Job = {
   id: number;
   position: string;
   company: string;
-  date_applied: string;
+  date_applied: Date;
   location?: string;
   status: "applied" | "interview" | "rejected";
   notes?: string;
@@ -49,7 +49,7 @@ export type JobCardProps = {
   jobId: number;
   position: string;
   company: string;
-  date_applied: string;
+  date_applied: Date;
   location?: string;
   status: "applied" | "interview" | "rejected";
   notes?: string;

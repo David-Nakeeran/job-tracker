@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
 export default function UpdateJobDialog({
   jobId,
@@ -70,11 +71,10 @@ export default function UpdateJobDialog({
     const response = await updateJob(jobId, values);
 
     if (response.success) {
-      setFormMessage(response.message || "");
-      // toast.....
+      toast.success(response.message);
       setIsOpen(false);
     } else {
-      setFormMessage(response.message || "");
+      toast.error(response.message);
     }
     setIsSubmitting(false);
   }
@@ -277,7 +277,7 @@ export default function UpdateJobDialog({
                   </FormItem>
                 )}
               />
-              {formMessage && <p aria-live="polite">{formMessage}</p>}
+              {formMessage && toast(formMessage)}
               <Button
                 className="cursor-pointer mt-4 w-full py-2 px-4 rounded-md bg-[#ce2772] text-white font-semibold hover:bg-[#a81f5c] hover:scale-105 transform transition-colors duration-200 disabled:opacity-50"
                 type="submit"
