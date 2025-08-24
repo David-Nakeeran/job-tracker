@@ -1,5 +1,6 @@
 import { JobCardProps } from "@/types/types";
 import { DeleteAlertDialog } from "./DeleteAlertDialog";
+import UpdateJobDialog from "./UpdateJobDialog";
 
 export default function JobCard({
   jobId,
@@ -29,7 +30,7 @@ export default function JobCard({
       </p>
 
       <div className="text-sm text-[#e8e8e8]/80 space-y-1">
-        <p>Applied: {date_applied}</p>
+        <p>Applied: {new Date(date_applied).toLocaleDateString("en-GB")}</p>
         {salary && <p>Salary: {salary}</p>}
         <p>Type: {work_type}</p>
       </div>
@@ -53,6 +54,19 @@ export default function JobCard({
         </a>
       )}
       <DeleteAlertDialog jobId={jobId} />
+      <UpdateJobDialog
+        jobId={jobId}
+        position={position}
+        company={company}
+        status={status}
+        date_applied={date_applied}
+        location={location}
+        notes={notes}
+        work_type={work_type}
+        salary={salary}
+        job_url={job_url}
+        description={description}
+      />
     </div>
   );
 }
