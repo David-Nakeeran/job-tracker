@@ -6,7 +6,7 @@ import LoggedInUserNav from "./LoggedInUserNav";
 export default async function Header() {
   const { userId } = await auth();
   return (
-    <header className="mb-6">
+    <header className="mb-8">
       <nav className="flex justify-between">
         <Link href={"/"}>
           <p className="text-[#ce2772]">Job Tracker</p>

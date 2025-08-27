@@ -8,8 +8,8 @@ import {
   DialogHeader,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
-import { createJob, updateJob } from "@/lib/actions";
-import { JobCardProps, UserIdProps } from "@/types/types";
+import { updateJob } from "@/lib/actions";
+import { JobCardProps } from "@/types/types";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,9 +30,6 @@ export default function UpdateJobDialog({
   job_url,
   description,
 }: JobCardProps) {
-  // UI messages (success/error) from server action
-  const [formMessage, setFormMessage] = useState<string>("");
-
   // Modal state
   const [isOpen, setIsOpen] = useState(false);
 
@@ -56,7 +53,6 @@ export default function UpdateJobDialog({
   });
 
   async function onSubmit(values: JobFormValues) {
-    setFormMessage(""); // Clear old message
     setIsSubmitting(true);
 
     const response = await updateJob(jobId, values);
