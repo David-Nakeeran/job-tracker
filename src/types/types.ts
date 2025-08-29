@@ -1,3 +1,4 @@
+import { ColourKey } from "@/lib/colourMap";
 import { ReactNode } from "react";
 
 export type JobFormData = {
@@ -43,6 +44,7 @@ export type Job = {
 
 export type JobProps = {
   jobs: Job[];
+  colour: ColourKey;
 };
 
 export type JobCardProps = {
@@ -61,11 +63,5 @@ export type JobCardProps = {
 
 export type JobProviderProps = {
   jobs: Job[]; // an array of Job objects (each item matches the Job type)
-  children: ReactNode;
-};
-
-export type StatusCardProps = {
-  status: string;
-  count: number;
   children: ReactNode;
 };
