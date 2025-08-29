@@ -16,14 +16,18 @@ export default function DashboardContent() {
   // pass to components
   return (
     <section className="flex flex-col gap-3">
-      <StatusCard status="Applied" count={statusApplied.length}>
-        <JobList jobs={statusApplied} />
+      <StatusCard status="Applied" count={statusApplied.length} colour="yellow">
+        <JobList jobs={statusApplied} colour="yellow" />
       </StatusCard>
-      <StatusCard status="Interview" count={statusInterview.length}>
-        <JobList jobs={statusInterview} />
+      <StatusCard
+        status="Interview"
+        count={statusInterview.length}
+        colour="green"
+      >
+        <JobList jobs={statusInterview} colour="green" />
       </StatusCard>
-      <StatusCard status="Rejected" count={statusRejected.length}>
-        <JobList jobs={statusRejected} />
+      <StatusCard status="Rejected" count={statusRejected.length} colour="red">
+        <JobList jobs={statusRejected} colour="red" />
       </StatusCard>
     </section>
   );

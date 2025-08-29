@@ -1,6 +1,7 @@
 import { JobCardProps } from "@/types/types";
 import { DeleteAlertDialog } from "./DeleteAlertDialog";
 import UpdateJobDialog from "./UpdateJobDialog";
+import { ColourKey, colourMap } from "@/lib/colourMap";
 
 export default function JobCard({
   jobId,
@@ -14,14 +15,18 @@ export default function JobCard({
   salary,
   job_url,
   description,
-}: JobCardProps) {
+  colour,
+}: JobCardProps & { colour: ColourKey }) {
+  const colours = colourMap[colour];
   return (
-    <div className="bg-[#1b1b1d] border border-[#3d3d3f] rounded-xl shadow-md p-4 space-y-3 transition-all duration-200 hover:border-[#ce2772]">
+    <div
+      className={`bg-[#1b1b1d] border border-[#3d3d3f] rounded-xl shadow-md p-4 space-y-3 transition-all duration-200 ${colours.cardHover}`}
+    >
       <div className="flex justify-between items-center">
-        <h2 className="text-lg font-semibold text-[#ce2772]">{position}</h2>
+        <h2 className="text-2xl font-semibold">{position}</h2>
       </div>
       <div>
-        <span className="text-sm border border-[#ce2772] text-[#ce2772] px-2 py-1 rounded-full">
+        <span className={`${colours.statusCapsule} text-sm px-2 py-1 `}>
           Status: {status}
         </span>
       </div>
@@ -29,18 +34,18 @@ export default function JobCard({
         {company} {location && `• ${location}`}
       </p>
 
-      <div className="text-sm text-[#e8e8e8]/80 space-y-1">
+      <div className="flex flex-col gap-2 text-sm text-[#e8e8e8]/80 space-y-1">
         <p>Applied: {new Date(date_applied).toLocaleDateString("en-GB")}</p>
-        {salary && <p>Salary: {salary}</p>}
+        {salary && <p>Salary: £{salary}</p>}
         <p>Type: {work_type}</p>
       </div>
       {description && (
-        <p className="text-sm text-[#e8e8e8] bg-[#2a2a2c] p-2 rounded">
+        <p className="text-sm text-[#e8e8e8] bg-[#2a2a2c] p-2 rounded line-clamp-3">
           {description}
         </p>
       )}
       {notes && (
-        <p className="text-sm text-[#e8e8e8]/80 italic bg-[#2a2a2c] p-2 rounded">
+        <p className="text-sm text-[#e8e8e8]/80 italic bg-[#2a2a2c] p-2 rounded line-clamp-3">
           {notes}
         </p>
       )}
@@ -48,25 +53,27 @@ export default function JobCard({
         <a
           href={job_url}
           target="_blank"
-          className="text-[#ce2772] hover:text-[#a81f5c] underline text-sm"
+          className="block text-[#ce2772] hover:text-[#a81f5c] underline text-sm mt-2"
         >
           Job Link
         </a>
       )}
-      <DeleteAlertDialog jobId={jobId} />
-      <UpdateJobDialog
-        jobId={jobId}
-        position={position}
-        company={company}
-        status={status}
-        date_applied={date_applied}
-        location={location}
-        notes={notes}
-        work_type={work_type}
-        salary={salary}
-        job_url={job_url}
-        description={description}
-      />
+      <div className="flex flex-col md:flex-row gap-2 justify-between">
+        <UpdateJobDialog
+          jobId={jobId}
+          position={position}
+          company={company}
+          status={status}
+          date_applied={date_applied}
+          location={location}
+          notes={notes}
+          work_type={work_type}
+          salary={salary}
+          job_url={job_url}
+          description={description}
+        />
+        <DeleteAlertDialog jobId={jobId} />
+      </div>
     </div>
   );
 }
