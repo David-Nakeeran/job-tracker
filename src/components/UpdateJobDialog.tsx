@@ -6,6 +6,7 @@ import {
   DialogContent,
   DialogTitle,
   DialogHeader,
+  DialogClose,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { updateJob } from "@/lib/actions";
@@ -69,17 +70,27 @@ export default function UpdateJobDialog({
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button>Update Job</Button>
+        <Button className="bg-[#2a2a2c] text-[#e8e8e8] border border-[#6b21a8] hover:bg-[#3d3d3f] hover:border-[#8b5cf6]">
+          Update Job
+        </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent
+        className="bg-[#2a2a2c] border-[#b388ff] h-dvh md:h-[90%] overflow-auto sm:w-[80%] md:w-[50%] max-w-md
+        [&_[data-slot='dialog-close']>svg]:!w-5
+    [&_[data-slot='dialog-close']>svg]:!h-5
+    [&_*[data-slot='dialog-close']]:text-purple-500"
+      >
         <DialogHeader>
-          <DialogTitle>Update Job</DialogTitle>
+          <span className="sr-only">
+            <DialogTitle>Update Job</DialogTitle>
+          </span>
         </DialogHeader>
         <JobForm
           form={form}
           onSubmit={onSubmit}
           submitLabel="Update Job"
           isSubmitting={isSubmitting}
+          formLabel="Update Job"
         />
       </DialogContent>
     </Dialog>

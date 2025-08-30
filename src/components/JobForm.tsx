@@ -18,6 +18,7 @@ type JobFormProps = {
   onSubmit: (values: JobFormValues) => Promise<void>;
   submitLabel: string;
   isSubmitting: boolean;
+  formLabel: string;
 };
 
 export default function JobForm({
@@ -25,15 +26,16 @@ export default function JobForm({
   onSubmit,
   submitLabel = "Submit",
   isSubmitting,
+  formLabel,
 }: JobFormProps) {
   return (
     <>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="max-w-md mx-auto p-6 bg-[#2a2a2c] rounded-md shadow-md flex flex-col gap-4"
+          className="max-w-md mx-auto p-6 bg-[#2a2a2c] rounded-md shadow-md flex flex-col gap-4 w-full"
         >
-          <h2 className="text-center font-bold">Add a Job</h2>
+          <h2 className="text-center font-bold text-[#b388ff]">{formLabel}</h2>
 
           <FormField
             control={form.control}
@@ -221,7 +223,7 @@ export default function JobForm({
             )}
           />
           <Button
-            className="cursor-pointer mt-4 w-full py-2 px-4 rounded-md bg-[#ce2772] text-white font-semibold hover:bg-[#a81f5c] hover:scale-105 transform transition-colors duration-200 disabled:opacity-50"
+            className="cursor-pointer font-semibold mt-4 w-full py-2 px-4 bg-[#b388ff] p-4 rounded-md shadow-lg hover:bg-[#9b6bff] hover:scale-105 transform transition-colors duration-200 disabled:opacity-50"
             type="submit"
             disabled={isSubmitting}
           >
