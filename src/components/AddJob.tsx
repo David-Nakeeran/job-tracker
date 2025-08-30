@@ -62,6 +62,7 @@ export default function AddJob({ userId }: UserIdProps) {
       onSubmit={onSubmit}
       submitLabel="Add Job"
       isSubmitting={isSubmitting}
+      formLabel="Add Job"
     />
   );
 }

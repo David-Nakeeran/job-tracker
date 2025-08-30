@@ -31,7 +31,7 @@ export function DeleteAlertDialog({ jobId }: JobIdProps) {
       <AlertDialogTrigger asChild>
         <Button
           variant="ghost"
-          className="text-red-500 hover:text-red-400 border border-red-500 hover:bg-[#2a2a2c]"
+          className="bg-red-500 text-white hover:bg-red-600 shadow-md font-semibold"
         >
           Delete Job
         </Button>

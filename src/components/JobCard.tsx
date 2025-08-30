@@ -58,7 +58,7 @@ export default function JobCard({
           Job Link
         </a>
       )}
-      <div className="flex flex-col md:flex-row gap-2 justify-between">
+      <div className="flex flex-col md:flex-row gap-2 justify-between mt-4">
         <UpdateJobDialog
           jobId={jobId}
           position={position}
