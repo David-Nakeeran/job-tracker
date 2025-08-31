@@ -1,22 +1,23 @@
 import { auth } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { NotebookPen, Folders, SquarePen } from "lucide-react";
+import Image from "next/image";
 
 export default async function Main() {
   const { userId } = await auth();
   return (
-    <main>
-      <h1 className="text-4xl ont-extrabold text-center mb-6">
+    <main className="sm:flex flex-col items-center">
+      <h1 className="text-4xl lg:text-6xl ont-extrabold text-center mb-6 lg:mb-8">
         Track your job applications with ease
       </h1>
-      <h3 className="text-lg font-semibold mb-8">
+      <h3 className="text-lg lg:text-2xl font-semibold mb-8 lg:w-[70%]">
         Stop juggling spreadsheets. Our job tracker makes it simple to record,
         update, and organise every job you apply for all in one place.
       </h3>
       <div className="flex flex-col sm:flex-row sm:items-center text-center text-lg font-semibold gap-4 mb-8">
         <Link
           href={userId ? "/dashboard" : "/sign-in"}
-          className="bg-[#b388ff] p-4 rounded-3xl shadow-lg hover:bg-[#9b6bff] transition"
+          className="bg-[#b388ff] p-4 rounded-3xl shadow-lg hover:bg-[#9b6bff] transition "
         >
           Get Started
         </Link>
@@ -26,6 +27,16 @@ export default async function Main() {
         >
           How it Works
         </Link>
+      </div>
+      <div className="w-full max-w-3xl mx-auto mb-4">
+        <Image
+          src={"/images/dashboard.png"}
+          alt="screenshot of dashboard"
+          width={0}
+          height={0}
+          sizes="100vw"
+          style={{ width: "100%", height: "auto" }}
+        />
       </div>
       <section
         id="how-it-works"
