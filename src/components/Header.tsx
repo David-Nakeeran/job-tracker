@@ -1,11 +1,10 @@
-import { auth } from "@clerk/nextjs/server";
+"use client";
 import Link from "next/link";
-import { SignInButton, SignUpButton, SignedOut } from "@clerk/nextjs";
+import { SignInButton, SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import LoggedInUserNav from "./LoggedInUserNav";
 import { CalendarCheck } from "lucide-react";
 
-export default async function Header() {
-  const { userId } = await auth();
+export default function Header() {
   return (
     <header className="mb-8">
       <nav className="flex justify-between">
@@ -18,7 +17,9 @@ export default async function Header() {
             <SignInButton mode="modal" />
             <SignUpButton mode="modal" />
           </SignedOut>
-          {userId && <LoggedInUserNav />}
+          <SignedIn>
+            <LoggedInUserNav />
+          </SignedIn>
         </div>
       </nav>
     </header>
