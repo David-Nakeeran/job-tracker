@@ -26,7 +26,7 @@ export default function DashboardContent() {
 
   // pass to components
   return (
-    <section className="flex flex-col gap-3">
+    <section className="max-w-5xl mx-auto flex flex-col gap-3 md:">
       <div className="flex justify-end">
         <AddJobDialog userId={userId} />
       </div>

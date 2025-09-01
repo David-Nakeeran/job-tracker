@@ -20,7 +20,7 @@ export default function JobCard({
   const colours = colourMap[colour];
   return (
     <div
-      className={`bg-[#1b1b1d] border border-[#3d3d3f] rounded-xl shadow-md p-4 space-y-3 transition-all duration-200 ${colours.cardHover}`}
+      className={`bg-[#1b1b1d] border border-[#3d3d3f] rounded-xl shadow-md p-4 space-y-3 transition-all duration-200 flex flex-col ${colours.cardHover}`}
     >
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-semibold">{position}</h2>
@@ -40,12 +40,12 @@ export default function JobCard({
         <p>Type: {work_type}</p>
       </div>
       {description && (
-        <p className="text-sm text-[#e8e8e8] bg-[#2a2a2c] p-2 rounded line-clamp-3">
+        <p className="text-sm text-[#e8e8e8] bg-[#2a2a2c] p-2 rounded max-h-24 overflow-y-auto">
           {description}
         </p>
       )}
       {notes && (
-        <p className="text-sm text-[#e8e8e8]/80 italic bg-[#2a2a2c] p-2 rounded line-clamp-3">
+        <p className="text-sm text-[#e8e8e8]/80 italic bg-[#2a2a2c] p-2 rounded max-h-24 overflow-y-auto">
           {notes}
         </p>
       )}
@@ -58,7 +58,7 @@ export default function JobCard({
           Job Link
         </a>
       )}
-      <div className="flex flex-col md:flex-row gap-2 justify-between mt-4">
+      <div className="mt-auto flex flex-col md:flex-row gap-2 justify-between pt-4">
         <UpdateJobDialog
           jobId={jobId}
           position={position}
