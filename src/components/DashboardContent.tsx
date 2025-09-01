@@ -2,8 +2,19 @@
 import { useJobs } from "@/context/JobContext";
 import StatusCard from "./StatusCard";
 import JobList from "./JobList";
+import { useAuth } from "@clerk/nextjs";
+import AddJobDialog from "./AddJobDialog";
+import { redirect } from "next/navigation";
 
 export default function DashboardContent() {
+  const { userId } = useAuth();
+
+  // Guard clause: ensures userId is always a string (not null/undefined)
+  // Redirects unauthenticated users before rendering dashboard
+  if (!userId) {
+    redirect("/sign-in");
+  }
+
   const jobs = useJobs();
 
   //filter jobs by status
@@ -16,6 +27,9 @@ export default function DashboardContent() {
   // pass to components
   return (
     <section className="flex flex-col gap-3">
+      <div className="flex justify-end">
+        <AddJobDialog userId={userId} />
+      </div>
       <StatusCard status="Applied" count={statusApplied.length} colour="yellow">
         <JobList jobs={statusApplied} colour="yellow" />
       </StatusCard>
