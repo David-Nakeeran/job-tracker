@@ -30,7 +30,7 @@ export default async function Main() {
       </div>
       <div className="w-full max-w-3xl mx-auto mb-4">
         <Image
-          src={"/images/dashboard.png"}
+          src={"/images/dashboard.webp"}
           alt="screenshot of dashboard"
           width={0}
           height={0}
