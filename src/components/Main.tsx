@@ -32,10 +32,10 @@ export default async function Main() {
         <Image
           src={"/images/dashboard.webp"}
           alt="screenshot of dashboard"
-          width={0}
-          height={0}
-          sizes="100vw"
-          style={{ width: "100%", height: "auto" }}
+          width={1200}
+          height={800}
+          className="w-full h-auto"
+          priority
         />
       </div>
       <section
