@@ -5,7 +5,7 @@ import MobileNav from "./MobileNav";
 export default function LoggedInUserNav() {
   return (
     <>
-      <div className="hidden lg:flex gap-4">
+      <div className="hidden lg:flex items-center gap-4">
         <DesktopMenu />
         <UserButton />
       </div>
