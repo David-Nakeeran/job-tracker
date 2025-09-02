@@ -2,19 +2,10 @@
 import { useJobs } from "@/context/JobContext";
 import StatusCard from "./StatusCard";
 import JobList from "./JobList";
-import { useAuth } from "@clerk/nextjs";
 import AddJobDialog from "./AddJobDialog";
-import { redirect } from "next/navigation";
+import { UserIdProps } from "@/types/types";
 
-export default function DashboardContent() {
-  const { userId } = useAuth();
-
-  // Guard clause: ensures userId is always a string (not null/undefined)
-  // Redirects unauthenticated users before rendering dashboard
-  if (!userId) {
-    redirect("/sign-in");
-  }
-
+export default function DashboardContent({ userId }: UserIdProps) {
   const jobs = useJobs();
 
   //filter jobs by status
