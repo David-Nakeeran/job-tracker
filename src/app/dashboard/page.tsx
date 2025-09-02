@@ -15,7 +15,7 @@ export default async function DashboardPage() {
 
   return (
     <Providers jobs={jobs}>
-      <DashboardContent />
+      <DashboardContent userId={userId} />
     </Providers>
   );
 }
