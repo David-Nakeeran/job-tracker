@@ -21,6 +21,14 @@ A web app to help you track and manage your job applications in one place. Easil
 - **Notifications:** Sonner
 - **Icons:** Lucide React
 
+## Demo Account
+
+You can explore the app without creating your own account.  
+Use the following test credentials to log in:
+
+- **Email:** testuser@test.com
+- **Password:** Madeupuser123@
+
 ## Installation
 
 1. Clone the repository:
